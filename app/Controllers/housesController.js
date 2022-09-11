@@ -1,41 +1,41 @@
 import { appState } from "../AppState.js";
-import { jobsService } from "../Services/JobsService.js";
+import { housesService, HousesService } from "../Services/HousesService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { setHTML } from "../Utils/Writer.js";
 
-function drawJobs() {
+function drawHouses() {
   let template = ''
-  appState.jobs.forEach(job => template += job.jobCardTemplate)
+  appState.houses.forEach(house => template += house.houseCardTemplate)
   setHTML('listings', template)
-
 }
 
 
-export class JobsController {
+
+export class HousesController {
   constructor() {
-    appState.on('jobs', drawJobs)
-
-  }
-
-  showJobs() {
-    drawJobs()
+    appState.on('houses', drawHouses)
   }
 
 
 
-  // FORM Data
-  addJob() {
+  showHouses() {
+    drawHouses()
+  }
+
+
+
+  addHouse() {
     try {
       // @ts-ignore
       window.event.preventDefault()
       // @ts-ignore
       const form = window.event.target
       let formData = getFormData(form)
-      jobsService.addJob(formData)
+      housesService.addHouse(formData)
       // @ts-ignore
       form.reset()
     } catch (error) {
-      console.error('addjob', error)
+      console.error('houses', error)
     }
   }
 }

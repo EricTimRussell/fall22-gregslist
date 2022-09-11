@@ -19,7 +19,7 @@ export class Car {
 
 
   get CarCardTemplate() {
-    return /*html*/`
+    return `
     <div class="col-md-4 col-lg-3 mb-3">
       <div class="card">
         <img src="${this.imgUrl}" alt="${this.make}-${this.model}" class="img-fluid">
